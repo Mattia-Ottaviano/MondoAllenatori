@@ -30,3 +30,16 @@
   </div>
 </body>
 </html>
+
+
+ <!--Premendo prenota si inviano le informazioni sulla canzone al metodo onClick-->
+ <form>
+  <input #u> : user <br>
+  <input #p> : pwd <br>
+  <button (click)="onClick(u, p)"> Aggiungi canzone </button>
+</form>
+
+
+{{storage | json}}
+
+<app-log-reg></app-log-reg>
