@@ -1,8 +1,11 @@
-from flask import Flask,render_template, request, redirect, url_for, Response
-app = Flask(__name__)
 
-import pandas as pd 
-import pymssql
+from flask import Flask, request, jsonify
+import pandas as pd
+import pymssql as sql
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
 
 conn = pymssql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio', password='xxx123##', database='giurato.fabrizio')
 
@@ -12,6 +15,12 @@ def home():
     return render_template('app.component.html')
 
 
+@app.route('/pippo', methods=['POST'])     
+def login():
+    user = request.form.get('user')
+    pwd = request.form.get('pwd')
+    data = {"user": user , "pwd" : pwd }
+    return jsonify(data)
 
 
 

@@ -23,21 +23,17 @@
 
   <!--boxContainer-->
   <div class="container">
-    <h1>My First Bootstrap Page</h1>
-    <p>This part is inside a .container class.</p>
-    <p>The .container class provides a responsive fixed width container.</p>
-    <p>Resize the browser window to see that the container width will change at different breakpoints.</p>
+ <!--Premendo prenota si inviano le informazioni sulla canzone al metodo onClick-->
+ <form>
+  <input #u> : user <br>
+  <input #p> : pwd <br>
+  <button (click)="onClick(u, p)">Login</button>
+</form>
   </div>
 </body>
 </html>
 
 
- <!--Premendo prenota si inviano le informazioni sulla canzone al metodo onClick-->
- <form>
-  <input #u> : user <br>
-  <input #p> : pwd <br>
-  <button (click)="onClick(u, p)"> Aggiungi canzone </button>
-</form>
 
 
 {{storage | json}}
