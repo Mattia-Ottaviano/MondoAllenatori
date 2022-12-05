@@ -12,7 +12,7 @@ export class AppComponent {
   obs!: Observable<any>; ///TODO: Fix data type
   storage: any;
   constructor(private http: HttpClient) {
-    this.obs = this.http.get('https://3245-mattiaottav-mondoallena-8qnlyt4dxj6.ws-eu77.gitpod.io/pippo')
+    this.obs = this.http.get('https://3245-mattiaottav-mondoallena-8qnlyt4dxj6.ws-eu77.gitpod.io/logreg')
     this.obs.subscribe(this.getdata);
   }
 
@@ -29,7 +29,7 @@ export class AppComponent {
     })
 
     console.log(values)
-    this.http.post('https://3245-mattiaottav-mondoallena-8qnlyt4dxj6.ws-eu77.gitpod.io/pluto', values, )
+    this.http.post('https://3245-mattiaottav-mondoallena-8qnlyt4dxj6.ws-eu77.gitpod.io/pluto', values,)
       .subscribe(() => { console.log("dati inviati con successo") });
 
     return false
