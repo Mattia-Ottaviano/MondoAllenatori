@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogRegComponent } from './log-reg/log-reg.component';
 import { HomeComponent } from './home/home.component';
+import { AllenatoreComponent } from './allenatore/allenatore.component';
 
 
 @NgModule({
@@ -12,6 +13,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     LogRegComponent,
     HomeComponent,
+    AllenatoreComponent,
+    HttpClientModule
     
   ],
   imports: [

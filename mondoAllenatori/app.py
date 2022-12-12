@@ -1,21 +1,40 @@
-
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import pandas as pd
 import pymssql as sql
 from flask_cors import CORS
 
+from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
+conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio', password='xxx123##', database='giurato.fabrizio')
 app = Flask(__name__)
 CORS(app)
 
-conn = pymssql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio', password='xxx123##', database='giurato.fabrizio')
-
-
+"""
 @app.route('/', methods=['GET'])     
 def home():
     return render_template('app.component.html')
 
+"""
 
-@app.route('/logreg', methods=['POST'])     
+
+@app.route('/pandas/all')
+def getstall_pandas():
+
+    data = request.args.get("nome")
+    q = 'SELECT * FROM allenatore.nome ' + ('WHERE nome IN (SELECT nome FROM allenatore WHERE nome LIKE %(data)s)' if data != None and data != '' else "")
+    df = pd.read_sql(q, conn, params={"data": f'%{data}%'})
+
+    res = list(df.fillna("NaN").to_dict("index").values())    # list(df.to_dict("index").values())
+
+    return jsonify(res)
+
+
+
+
+
+""" @app.route('/logreg', methods=['POST'])     
 def login():
     user = request.form.get('user')
     pwd = request.form.get('pwd')
@@ -37,11 +56,7 @@ def es():
     tabella_scopo = pd.read_sql(query_scopo,conn)
     return render_template('app.component.html')
 
-@app.route('/allenatore', methods=['GET'])     
-def all():
-    query= "SELECT nome, cognome, squadra FROM allenatore"
-    tabella = pd.read_sql(query,conn)
-    return render_template('app.component.html')
+
 
 @app.route('/schema', methods=['GET'])     
 def sch():
@@ -77,6 +92,6 @@ def ruo():
 
     return render_template('app.component.html')
 
-
+"""
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
