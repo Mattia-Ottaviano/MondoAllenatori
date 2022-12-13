@@ -1,26 +1,27 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 import pandas as pd
 import pymssql as sql
 from flask_cors import CORS
 
 from os import getenv
 from dotenv import load_dotenv
-
 load_dotenv()
+
 conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio', password='xxx123##', database='giurato.fabrizio')
+
 app = Flask(__name__)
 CORS(app)
 
-"""
+
 @app.route('/', methods=['GET'])     
 def home():
     return render_template('app.component.html')
 
-"""
+
 
 
 @app.route('/pandas/all')
-def getstall_pandas():
+def gettall_pandas():
 
     data = request.args.get("nome")
     q = 'SELECT * FROM allenatore.nome ' + ('WHERE nome IN (SELECT nome FROM allenatore WHERE nome LIKE %(data)s)' if data != None and data != '' else "")
@@ -34,7 +35,7 @@ def getstall_pandas():
 
 
 
-""" @app.route('/logreg', methods=['POST'])     
+@app.route('/logreg', methods=['POST'])     
 def login():
     user = request.form.get('user')
     pwd = request.form.get('pwd')
@@ -92,6 +93,6 @@ def ruo():
 
     return render_template('app.component.html')
 
-"""
+
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
