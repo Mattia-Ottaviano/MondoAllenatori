@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class AllenatoreComponent {
   allenatori!: any;
   loading!: Boolean;
-  url: string = "http://localhost:3000/pandas/allenatore";
+  url: string = "http://localhost:3000/pandas/all";
 
   constructor(public http : HttpClient) {
     this.get(this.url);
@@ -21,9 +21,7 @@ get(url: string): void {
     this.allenatori = data;
     this.loading = false;
   });
-}
-
 
 }
-
+}
 

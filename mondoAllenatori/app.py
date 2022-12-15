@@ -23,8 +23,8 @@ def home():
 @app.route('/pandas/all')
 def gettall_pandas():
 
-    data = request.args.get("nome")
-    q = 'SELECT * FROM allenatore.nome ' + ('WHERE nome IN (SELECT nome FROM allenatore WHERE nome LIKE %(data)s)' if data != None and data != '' else "")
+    data = request.args.get("cognome")
+    q = 'SELECT * FROM allenatore.cognome ' + ('WHERE cognome IN (SELECT cognome FROM allenatore WHERE cognome LIKE %(data)s)' if data != None and data != '' else "")
     df = pd.read_sql(q, conn, params={"data": f'%{data}%'})
 
     res = list(df.fillna("NaN").to_dict("index").values())    # list(df.to_dict("index").values())
