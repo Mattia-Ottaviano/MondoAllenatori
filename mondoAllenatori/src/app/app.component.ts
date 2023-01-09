@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -8,30 +7,31 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'mondoAllenatori';
-  obs!: Observable<any>; ///TODO: Fix data type
-  storage: any;
-  constructor(private http: HttpClient) {
-    this.obs = this.http.get('https://3245-mattiaottav-mondoallena-8qnlyt4dxj6.ws-eu77.gitpod.io/logreg')
-    this.obs.subscribe(this.getdata);
+  allenatore!: any;
+  loading!: Boolean;
+  url: string = "https://3245-mattiaottav-mondoallena-j84m325yz68.ws-eu81.gitpod.io/pandas/staff";
+
+  constructor(public http: HttpClient) {
+    this.get(this.url);
   }
 
-  getdata = (data: any) => {
-    this.storage = data;
-    console.log(this.storage)
+  get(url: string): void {
+    this.loading = true;
+    this.http.get(url).subscribe(data => {
+      this.allenatore = data;
+      this.loading = false;
+    });
   }
 
+  // previousSearch: string = '';
+  // onKey(value: string) {
+  //   if (value != this.previousSearch) {
+  //     this.get(this.url + "?store_name=" + value);
+  //     this.previousSearch = value;
+  //   }
+  // }
 
-  onClick(user: HTMLInputElement, pwd: HTMLInputElement): boolean {
-    let values = JSON.stringify({
-      user: user.value,
-      pwd: pwd.value,
-    })
-
-    console.log(values)
-    this.http.post('https://3245-mattiaottav-mondoallena-8qnlyt4dxj6.ws-eu77.gitpod.io/pluto', values,)
-      .subscribe(() => { console.log("dati inviati con successo") });
-
-    return false
+  onKey(value: string) {
+    this.get(this.url + "?store_name=" + value);
   }
 }
