@@ -9,18 +9,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
-  
+  <!--
     <ul *ngFor="let a of allenatori">
       <li>{{a.id}}</li>
       <li>{{a.nome}}</li>
       <li>{{a.cognome}}</li>
       <li>{{a.squadra}}</li>
       <li>{{a.immagine}}</li>
-      <li>{{a.active}}</li>
-      <li>{{a.store_id}}</li>
-      <li>{{a.manager_id}}</li>
+      
     </ul>
-    <!--
+    -->
+    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,20 +59,22 @@
     <div class="scrolling-wrapper">
     <div class="container-fluid">
     
+    <!--allenatori-->
     <p><strong>Allenatori</strong></p>
-
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-
+    <div class="row row-cols-1 row-cols-md-4 g-6">
+    <div *ngFor="let a of allenatori">
       <div class="card text-center" style="width:400px">
-        <img class="card-img-top" src="../allenatore/images/allegri.png" alt="Card image">
+        <img class="card-img-top" src="/assets/allenatori/images/{{a.immagine}}" alt="Card image">
         <div class="card-body">
-          <h4 class="card-title">Massimiliano Allegri</h4>
-          <p class="card-text">Juventus, 4-4-2 </p>
+          <h4 class="card-title">{{a.nome}} {{a.cognome}}</h4>
+          <p class="card-text">{{a.squadra}}</p>
           <a href="#all" class="btn btn-primary">See Profile</a>
         </div>
       </div>
+    </div>
+    </div>
 
-
+<!--
       <div class="card text-center" style="width:400px">
         <img class="card-img-top" src="../allenatore/images/conte.png" alt="Card image">
         <div class="card-body">
@@ -100,7 +101,7 @@
           <a href="#" class="btn btn-primary">See Profile</a>
         </div>
       </div>
-
+    
     </div>
     </div>
     </div>
@@ -272,4 +273,4 @@
 
               </div>
           
-            -->
+           -->

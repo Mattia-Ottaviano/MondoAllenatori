@@ -13,9 +13,7 @@ import { AllenatoreComponent } from './allenatore/allenatore.component';
     AppComponent,
     LogRegComponent,
     HomeComponent,
-    AllenatoreComponent,
-    HttpClientModule
-    
+    AllenatoreComponent
   ],
   imports: [
     BrowserModule,

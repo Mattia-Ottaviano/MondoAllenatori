@@ -9,8 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class HomeComponent {
   allenatori!: any;
   loading!: Boolean;
-  url: string = "https://3245-mattiaottav-mondoallena-j84m325yz68.ws-eu81.gitpod.io/pandas/staff";
-
+  url: string = "https://3245-mattiaottav-mondoallena-p752p5z4lby.ws-eu81.gitpod.io/pandas/all";
   constructor(public http: HttpClient) {
     this.get(this.url);
   }
@@ -22,6 +21,7 @@ export class HomeComponent {
       this.loading = false;
     });
   }
+  
 
   // previousSearch: string = '';
   // onKey(value: string) {
