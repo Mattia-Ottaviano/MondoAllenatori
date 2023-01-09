@@ -13,21 +13,15 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/', methods=['GET'])     
-def home():
-    return render_template('app.component.html')
-
-
-
 
 @app.route('/pandas/all')
 def gettall_pandas():
 
-    data = request.args.get("cognome")
-    q = 'SELECT * FROM allenatore.cognome ' + ('WHERE cognome IN (SELECT cognome FROM allenatore WHERE cognome LIKE %(data)s)' if data != None and data != '' else "")
-    df = pd.read_sql(q, conn, params={"data": f'%{data}%'})
+    data = request.args.get("allenatore")
+    q = 'SELECT * FROM allenatore' 
+    df = pd.read_sql(q, conn)
 
-    res = list(df.fillna("NaN").to_dict("index").values())    # list(df.to_dict("index").values())
+    res = list(df.values())    # list(df.to_dict("index").values())
 
     return jsonify(res)
 
@@ -35,7 +29,7 @@ def gettall_pandas():
 
 
 
-@app.route('/logreg', methods=['POST'])     
+''' @app.route('/logreg', methods=['POST'])     
 def login():
     user = request.form.get('user')
     pwd = request.form.get('pwd')
@@ -93,6 +87,6 @@ def ruo():
 
     return render_template('app.component.html')
 
-
+'''
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
