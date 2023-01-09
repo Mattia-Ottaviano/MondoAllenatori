@@ -7,6 +7,7 @@ from os import getenv
 from dotenv import load_dotenv
 load_dotenv()
 
+
 conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio', password='xxx123##', database='giurato.fabrizio')
 
 app = Flask(__name__)
@@ -21,12 +22,10 @@ def gettall_pandas():
     q = 'SELECT * FROM allenatore' 
     df = pd.read_sql(q, conn)
 
-    res = list(df.values())    # list(df.to_dict("index").values())
+    res = list(df.to_dict("index").values())    # list(df.to_dict("index").values())
 
     return jsonify(res)
-
-
-
+    print(res)
 
 
 ''' @app.route('/logreg', methods=['POST'])     
