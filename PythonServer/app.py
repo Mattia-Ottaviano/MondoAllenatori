@@ -16,7 +16,7 @@ CORS(app)
 
 
 @app.route('/pandas/all')
-def gettall_pandas():
+def getall_pandas():
 
     data = request.args.get("allenatore")
     q = 'SELECT * FROM allenatore' 
@@ -25,7 +25,20 @@ def gettall_pandas():
     res = list(df.to_dict("index").values())    # list(df.to_dict("index").values())
 
     return jsonify(res)
-    print(res)
+
+
+@app.route('/pandas/schemi')
+def getschemi_pandas():
+
+    data = request.args.get("schemi")
+    q = 'SELECT * FROM schemi' 
+    df = pd.read_sql(q, conn)
+
+    res1 = list(df.to_dict("index").values())    # list(df.to_dict("index").values())
+
+    return jsonify(res1)
+    
+
 
 
 ''' @app.route('/logreg', methods=['POST'])     
