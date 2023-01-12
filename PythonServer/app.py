@@ -27,7 +27,7 @@ def getall_pandas():
     return jsonify(res)
 
 
-@app.route('/pandas/schemi')
+@app.route('/pandas/sch')
 def getschemi_pandas():
 
     data = request.args.get("schemi")
@@ -39,8 +39,31 @@ def getschemi_pandas():
     return jsonify(res1)
     
 
+@app.route('/pandas/ruo')
+def getruoli_pandas():
+
+    data = request.args.get("ruolo")
+    q = 'SELECT * FROM ruolo' 
+    df = pd.read_sql(q, conn)
+
+    res2 = list(df.to_dict("index").values())    # list(df.to_dict("index").values())
+
+    return jsonify(res2)
 
 
+@app.route('/pandas/ese')
+def getese_pandas():
+
+    data = request.args.get("esercizio")
+    q = 'SELECT * FROM esercizio' 
+    df = pd.read_sql(q, conn)
+
+    res3 = list(df.to_dict("index").values())    # list(df.to_dict("index").values())
+
+    return jsonify(res3)
+
+
+    
 ''' @app.route('/logreg', methods=['POST'])     
 def login():
     user = request.form.get('user')
