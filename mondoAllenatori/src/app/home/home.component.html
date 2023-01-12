@@ -9,16 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
-  <!--
-    <ul *ngFor="let a of allenatori">
-      <li>{{a.id}}</li>
-      <li>{{a.nome}}</li>
-      <li>{{a.cognome}}</li>
-      <li>{{a.squadra}}</li>
-      <li>{{a.immagine}}</li>
-      
-    </ul>
-    -->
+
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -74,203 +65,47 @@
     </div>
     </div>
 
-<!--
-      <div class="card text-center" style="width:400px">
-        <img class="card-img-top" src="../allenatore/images/conte.png" alt="Card image">
-        <div class="card-body">
-          <h4 class="card-title">Antonio Conte</h4>
-          <p class="card-text">Tottenham Hotspur, 3-5-2 </p>
-          <a href="#" class="btn btn-primary">See Profile</a>
-        </div>
-      </div>
 
+    <!--schemi-->
+    <p><strong>Schemi</strong></p>
+    <div class="row row-cols-1 row-cols-md-4 g-6">
+    <div *ngFor="let s of schemi">
       <div class="card text-center" style="width:400px">
-        <img class="card-img-top" src="../allenatore/images/guardiola.png" alt="Card image">
+        <img class="card-img-top" src="/assets/schemi/images/{{s.immagine}}" alt="Card image">
         <div class="card-body">
-          <h4 class="card-title">Pep Guardiola</h4>
-          <p class="card-text">MAnchester City, 4-3-3 </p>
-          <a href="#" class="btn btn-primary">See Profile</a>
+          <h4 class="card-title">{{s.nome}}</h4>
+          <a href="#sch" class="btn btn-primary">See Profile</a>
         </div>
       </div>
-
-      <div class="card text-center" style="width:400px">
-        <img class="card-img-top" src="../allenatore/images/klopp.png" alt="Card image">
-        <div class="card-body">
-          <h4 class="card-title">Jurgen Klopp</h4>
-          <p class="card-text"> Liverpool, 4-3-3 </p>
-          <a href="#" class="btn btn-primary">See Profile</a>
-        </div>
-      </div>
-    
-    </div>
     </div>
     </div>
 
-    <br>
-
-    
-    <div class="container-fluid">
-    
-        <p><strong>Schemi</strong></p>
-    
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-    
-          <div class="card text-center" style="width:400px">
-            <img class="card-img-top" src="../schema/images/352.png" alt="Card image">
-            <div class="card-body">
-              <h4 class="card-title">3-5-2</h4>
-              <p class="card-text">Allenatore guida: Antonio Conte</p>
-              <a href="#" class="btn btn-primary">Dettagli</a>
-            </div>
-          </div>
-    
-    
-          <div class="card text-center" style="width:400px">
-            <img class="card-img-top" src="../schema/images/442.png" alt="Card image">
-            <div class="card-body">
-              <h4 class="card-title">4-4-2</h4>
-              <p class="card-text">Allenatore guida: Massimiliano Allegri</p>
-              <a href="#" class="btn btn-primary">Dettagli</a>
-            </div>
-          </div>
-    
-    
-          <div class="card text-center" style="width:400px">
-            <img class="card-img-top" src="../schema/images/433.png" alt="Card image">
-            <div class="card-body">
-              <h4 class="card-title">4-3-3</h4>
-              <p class="card-text">Allenatore guida: Pep Guardiola, Jurgen Klopp</p>
-              <a href="#" class="btn btn-primary">Dettagli</a>
-            </div>
-          </div>
-  
+    <!--ruoli-->
+    <p><strong>Ruoli</strong></p>
+    <div class="row row-cols-1 row-cols-md-4 g-6">
+    <div *ngFor="let r of ruoli">
+      <div class="card text-center" style="width:400px">
+        <img class="card-img-top" src="/assets/ruolo/images/{{r.immagine}}" alt="Card image">
+        <div class="card-body">
+          <h4 class="card-title">{{r.nome}}</h4>
+          <p class="card-text">{{r.zona}}</p>
+          <a href="#ruo" class="btn btn-primary">See Profile</a>
         </div>
+      </div>
+    </div>
+    </div>
+
+    <!--esercizi-->
+    <p><strong>Esercizi</strong></p>
+    <div class="row row-cols-1 row-cols-md-4 g-6">
+    <div *ngFor="let e of esercizi">
+      <div class="card text-center" style="width:400px">
+        <img class="card-img-top" src="/assets/esercizi/images/{{e.immagine}}" alt="Card image">
+        <div class="card-body">
+          <h4 class="card-title">{{e.nome}}</h4>
+          <p class="card-text">{{e.difficolta}}</p>
+          <a href="#ese" class="btn btn-primary">See Profile</a>
         </div>
-
-
-        
-        <div class="container-fluid">
-    
-            <p><strong>Ruoli</strong></p>
-        
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-        
-              <div class="card text-center" style="width:400px">
-                <img class="card-img-top" src="../ruolo/images/buffon.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title">Portiere</h4>
-                  <p class="card-text">DIfesa</p>
-                  <p class="card-text">Esempio: Gianluigi Buffon</p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
-        
-        
-              <div class="card text-center" style="width:400px">
-                <img class="card-img-top" src="../ruolo/images/cafu.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title">Terzino</h4>
-                  <p class="card-text">DIfesa</p>
-                  <p class="card-text">Esempio: Cafu</p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
-        
-              <div class="card text-center" style="width:400px">
-                <img class="card-img-top" src="../ruolo/images/puyol.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title">Difensore Centrale</h4>
-                  <p class="card-text">DIfesa</p>
-                  <p class="card-text">Esempio: Carles Puyol Saforcada</p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
-        
-        
-              <div class="card text-center" style="width:400px">
-                <img class="card-img-top" src="../ruolo/images/pirlo.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title">Regista/Mediano</h4>
-                  <p class="card-text">Centrocampo</p>
-                  <p class="card-text">Esempio: Andrea Pirlo</p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
-        
-        
-              <div class="card text-center" style="width:400px">
-                <img class="card-img-top" src="../ruolo/images/iniesta.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title">Mezz'ala</h4>
-                  <p class="card-text">Centrocampo</p>
-                  <p class="card-text">Esempio: Andrés Iniesta Lujàn</p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
-              
-              <div class="card text-center" style="width:400px">
-                <img class="card-img-top" src="../allenatore/images/allegri.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title">Trequartista</h4>
-                  <p class="card-text">Centrocampo</p>
-                  <p class="card-text">Esempio: Zinédine Yazid Zidane</p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
-              
-              <div class="card text-center" style="width:400px">
-                <img class="card-img-top" src="../ruolo/images/Salah.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title">Ala</h4>
-                  <p class="card-text">Attacco</p>
-                  <p class="card-text">Esempio: Mohamed Salah</p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
-
-              <div class="card text-center" style="width:400px">
-                <img class="card-img-top" src="../ruolo/images/Messi.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title">Seconda Punta</h4>
-                  <p class="card-text">Attacco</p>
-                  <p class="card-text">Esempio: Lionel Andrés Messi Cuccitini</p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
-
-
-              <div class="card text-center" style="width:400px">
-                <img class="card-img-top" src="../ruolo/images/Ronaldo.png" alt="Card image">
-                <div class="card-body">
-                  <h4 class="card-title">Punta</h4>
-                  <p class="card-text">Attacco</p>
-                  <p class="card-text">Esempio: Ronaldo Nazario</p>
-                  <a href="#" class="btn btn-primary">See Profile</a>
-                </div>
-              </div>
-            </div>
-            </div>
-
-            
-            <div class="container-fluid">
-    
-              <p><strong>Esercizi</strong></p>
-          
-              <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="card text-center" style="width:400px">
-                  <img class="card-img-top" src="" alt="Card image">
-                  <div class="card-body">
-                    <h4 class="card-title">Torello o Rondo</h4>
-                    <p class="card-text">Facile</p>
-                    <p class="card-text">Giocatori: da 5 </p>
-                    <a href="#" class="btn btn-primary">See Profile</a>
-                  </div>
-                </div>
-
-
-
-
-
-              </div>
-          
-           -->
+      </div>
+    </div>
+    </div>

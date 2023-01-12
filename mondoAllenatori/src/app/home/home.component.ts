@@ -9,8 +9,10 @@ import { HttpClient } from '@angular/common/http';
 export class HomeComponent {
   allenatori!: any;
   schemi!: any;
+  ruoli!: any;
+  esercizi!: any;
   loading!: Boolean;
-  url: string = "https://3245-mattiaottav-mondoallena-nke0i1rw7st.ws-eu81.gitpod.io";
+  url: string = "https://3245-mattiaottav-mondoallena-48ld3o9ayq1.ws-eu81.gitpod.io";
   constructor(public http: HttpClient) {
     this.getAllen(this.url + "/pandas/all");
   }
@@ -20,6 +22,7 @@ export class HomeComponent {
     this.http.get(url).subscribe(data => {
       this.allenatori = data;
       this.loading = false;
+      this.getSchemi(this.url + "/pandas/sch");
     });
   }
 
@@ -28,9 +31,27 @@ export class HomeComponent {
     this.http.get(url).subscribe(data => {
       this.schemi = data;
       this.loading = false;
-      this.getSchemi(this.url + "/pandas/schemi");
+      this.getRuoli(this.url + "/pandas/ruo");
     });
  }
+ getRuoli(url: string): void {
+  this.loading = true;
+  this.http.get(url).subscribe(data => {
+    this.ruoli = data;
+    this.loading = false;
+    this.getEsercizi(this.url + "/pandas/ese")
+  });
+}
+
+
+
+getEsercizi(url: string): void {
+  this.loading = true;
+  this.http.get(url).subscribe(data => {
+    this.esercizi = data;
+    this.loading = false;
+  });
+}
 }
   
 
