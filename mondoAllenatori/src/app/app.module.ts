@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LogRegComponent } from './log-reg/log-reg.component';
 import { HomeComponent } from './home/home.component';
 import { AllenatoreComponent } from './allenatore/allenatore.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AllenatoreComponent } from './allenatore/allenatore.component';
     AppComponent,
     LogRegComponent,
     HomeComponent,
-    AllenatoreComponent
+    AllenatoreComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
