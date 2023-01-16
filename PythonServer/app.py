@@ -13,7 +13,7 @@ conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio',
 app = Flask(__name__)
 CORS(app)
 
-
+angular_url = 'https://4200-mattiaottav-mondoallena-c21a4ey5vwm.ws-eu82.gitpod.io'
 
 @app.route('/pandas/all')
 def getall_pandas():
@@ -63,65 +63,37 @@ def getese_pandas():
     return jsonify(res3)
 
 
-    
-''' @app.route('/logreg', methods=['POST'])     
-def login():
-    user = request.form.get('user')
-    pwd = request.form.get('pwd')
-    data = {"user": user , "pwd" : pwd }
-    return jsonify(data)
-
-@app.route('/esercizio', methods=['GET'])     
-def es():
-    query= "select nome, n_gioc, difficolta, scopo FROM esercizio"
-    query_nome= "SELECT nome FROM esercizio"
-    query_ngioc= "SELECT n_gioc FROM esercizio"
-    query_difficolta= "SELECT difficolta FROM esercizio"
-    query_scopo= "SELECT scopo FROM esercizio"
-
-    tabella = pd.read_sql(query,conn)
-    tabella_nome = pd.read_sql(query_nome,conn)
-    tabella_ngioc = pd.read_sql(query_ngioc,conn)
-    tabella_difficolta = pd.read_sql(query_difficolta,conn)
-    tabella_scopo = pd.read_sql(query_scopo,conn)
-    return render_template('app.component.html')
+@app.route('/a/<id>')
+def getInfoAll_pandas():
+    data = request.args.get('id')
+    id_all = allenatore.id
+    q = f'SELECT id FROM allenatore WHERE id = (id_all)'
+    res4 = list(df.to_dict("index").values())
 
 
 
-@app.route('/schema', methods=['GET'])     
-def sch():
-    query= "SELECT nome, n_dif, n_cen, n_att, descr FROM schema"
-    query_ndif= "SELECT n_dif FROM schema"
-    query_ncen= "SELECT n_cen FROM schema"
-    query_natt= "SELECT n_att FROM schema"
-    query_descr= "SELECT descr FROM schema"
-    query_nome= "SELECT nome FROM schema"
+@app.route("/register/data", methods=["POST"])
+def dati_registrazione():
+  username = request.form["username"]
+  email = request.form["email"]
+  password = request.form["password"]
+  Cq = "select * from user where username = %(username)s"
+  Ccursor = conn.cursor(as_dict=True)
+  Cp = {"username": f"{username}","email": f"{email}","password": f"{password}"}
+  Ccursor.execute(Cq, Cp)
+  Cdata = Ccursor.fetchall()
+  if Cdata != []:
+    return redirect(angular_url + '/register')
+  else:
+    q = 'insert into spotify.users (username, email, password) values (%(username)s,%(email)s,%(password)s)'
+    cursor = conn.cursor(as_dict=True)
+    p = {"username": f"{username}","email": f"{email}","password": f"{password}"}
 
-    
-    tabella = pd.read_sql(query,conn)
-    tabella_nome = pd.read_sql(query_nome,conn)
-    tabella_ndif = pd.read_sql(query_ndif,conn)
-    tabella_ncen = pd.read_sql(query_ncen,conn)
-    tabella_natt = pd.read_sql(query_natt,conn)
-    tabella_descr = pd.read_sql(query_descr,conn)
-    return render_template('app.component.html')
+    cursor.execute(q, p)
+    conn.commit()
+    #print(data)
+    return redirect(angular_url + '/login')
 
-@app.route('/ruolo', methods=['GET'])     
-def ruo():
-    query= "SELECT nome, caratteristiche, esempi, zona FROM ruolo"
-    query_nome= "SELECT nome FROM ruolo"
-    query_caratteristiche= "SELECT caratteristiche FROM ruolo"
-    query_esempi= "SELECT esempi FROM ruolo"
-    query_zona= "SELECT zona FROM ruolo"
 
-    tabella = pd.read_sql(query,conn)
-    tabella_nome = pd.read_sql(query_nome,conn)
-    tabella_caratteristiche = pd.read_sql(query_caratteristiche,conn)
-    tabella_esempi = pd.read_sql(query_esempi,conn)
-    tabella_zona = pd.read_sql(query_zona,conn)
-
-    return render_template('app.component.html')
-
-'''
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
