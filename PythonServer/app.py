@@ -13,7 +13,7 @@ conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio',
 app = Flask(__name__)
 CORS(app)
 
-angular_url = 'https://4200-mattiaottav-mondoallena-c21a4ey5vwm.ws-eu82.gitpod.io'
+angular_url = 'https://4200-mattiaottav-mondoallena-u4l9g4tbhth.ws-eu82.gitpod.io'
 
 @app.route('/pandas/all')
 def getall_pandas():
@@ -64,11 +64,13 @@ def getese_pandas():
 
 
 @app.route('/a/<id>')
-def getInfoAll_pandas():
-    data = request.args.get('id')
-    id_all = allenatore.id
-    q = f'SELECT id FROM allenatore WHERE id = (id_all)'
+def getInfoAll_pandas(id):
+
+
+    q = f"SELECT id FROM allenatore WHERE id = '{id}'"
+    df = pd.read_sql(q,conn)
     res4 = list(df.to_dict("index").values())
+    return jsonify(res4)
 
 
 
@@ -85,15 +87,30 @@ def dati_registrazione():
   if Cdata != []:
     return redirect(angular_url + '/register')
   else:
-    q = 'insert into spotify.users (username, email, password) values (%(username)s,%(email)s,%(password)s)'
+    q = 'insert into users (username, email, password) values (%(username)s,%(email)s,%(password)s)'
     cursor = conn.cursor(as_dict=True)
     p = {"username": f"{username}","email": f"{email}","password": f"{password}"}
 
     cursor.execute(q, p)
     conn.commit()
-    #print(data)
     return redirect(angular_url + '/login')
 
+@app.route("/login/data", methods=["POST"])
+def dati_login():
+  email = request.form["email"]
+  password = request.form["password"]
+  q = "select * from spotify.users where email = %(email)s and password = %(password)s "
+  cursor = conn.cursor(as_dict=True)
+  p = {"email": f"{email}","password": f"{password}"}
+
+  cursor.execute(q, p)
+  data = cursor.fetchall()
+  
+  print(data)
+  if data == []:
+    return redirect(angular_url + '/login')
+  else:
+    return  jsonify(data) 
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
