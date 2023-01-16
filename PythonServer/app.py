@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect
 import pandas as pd
 import pymssql as sql
 from flask_cors import CORS
@@ -13,7 +13,7 @@ conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio',
 app = Flask(__name__)
 CORS(app)
 
-angular_url = 'https://4200-mattiaottav-mondoallena-u4l9g4tbhth.ws-eu82.gitpod.io'
+angular_url = 'https://4200-mattiaottav-mondoallena-ho4vex24ii6.ws-eu82.gitpod.io'
 
 @app.route('/pandas/all')
 def getall_pandas():
@@ -63,10 +63,10 @@ def getese_pandas():
     return jsonify(res3)
 
 
-@app.route('/a/<id>')
+@app.route('/a/<id>', methods=['GET'])
 def getInfoAll_pandas(id):
 
-
+    
     q = f"SELECT id FROM allenatore WHERE id = '{id}'"
     df = pd.read_sql(q,conn)
     res4 = list(df.to_dict("index").values())
@@ -76,30 +76,38 @@ def getInfoAll_pandas(id):
 
 @app.route("/register/data", methods=["POST"])
 def dati_registrazione():
-  username = request.form["username"]
-  email = request.form["email"]
-  password = request.form["password"]
-  Cq = "select * from user where username = %(username)s"
+  username = request.args.get("name")
+  email = request.args.get("email")
+  password = request.args.get("password")
+
+  Cq = "SELECT * FROM users WHERE username = %(username)s OR email = %(e)s"
   Ccursor = conn.cursor(as_dict=True)
-  Cp = {"username": f"{username}","email": f"{email}","password": f"{password}"}
+  Cp = {"username": f"{username}","e": f"{email}"}
   Ccursor.execute(Cq, Cp)
   Cdata = Ccursor.fetchall()
-  if Cdata != []:
-    return redirect(angular_url + '/register')
-  else:
-    q = 'insert into users (username, email, password) values (%(username)s,%(email)s,%(password)s)'
+
+  print(Cdata)
+
+  if len(Cdata) < 1: # Se l'utente non esiste
+    print(request.args)
+    q = 'INSERT INTO users (username, email, password) VALUES (%(username)s, %(email)s, %(password)s)'
     cursor = conn.cursor(as_dict=True)
     p = {"username": f"{username}","email": f"{email}","password": f"{password}"}
 
     cursor.execute(q, p)
     conn.commit()
-    return redirect(angular_url + '/login')
+    return jsonify({'data': 'Ok!', 'url': 'login'})
+  else:
+    return jsonify({'data': 'User already exists!', 'url': None})
+
+
+    
 
 @app.route("/login/data", methods=["POST"])
 def dati_login():
-  email = request.form["email"]
-  password = request.form["password"]
-  q = "select * from spotify.users where email = %(email)s and password = %(password)s "
+  email = request.args["email"]
+  password = request.args["password"]
+  q = "select * from users where email = %(email)s and password = %(password)s "
   cursor = conn.cursor(as_dict=True)
   p = {"email": f"{email}","password": f"{password}"}
 
@@ -108,9 +116,28 @@ def dati_login():
   
   print(data)
   if data == []:
-    return redirect(angular_url + '/login')
+    return jsonify({"data": "Errore"}) # redirect(angular_url + '/login')
   else:
-    return  jsonify(data) 
+    return jsonify(data) 
+
+@app.route("/getallenatore", methods=["GET"])
+def get_allenatore():
+  allenatore_id = request.args.get('id')
+
+  print(request.args)
+  
+  q = "SELECT * FROM allenatore WHERE id = %(id)s"
+  cursor = conn.cursor(as_dict=True)
+  p = {"id": allenatore_id}
+
+  cursor.execute(q, p)
+  data = cursor.fetchall()
+  
+  print(data)
+  if len(data) < 1:
+    return jsonify({"data": {}}) 
+  else:
+    return jsonify({"data": data}) 
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
