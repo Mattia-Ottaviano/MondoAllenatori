@@ -1,24 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ManagerService } from 'src/services/manager.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-allenatore',
+  templateUrl: './allenatore.component.html',
+  styleUrls: ['./allenatore.component.css']
 })
-export class HomeComponent {
+export class AllenatoreComponent {
+  @Input() allenatori!: any;
   allenatore!: any;
   loading!: Boolean;
-  url: string = "https://3245-mattiaottav-mondoallena-c21a4ey5vwm.ws-eu82.gitpod.io/all/{{id}}";
-  constructor(public http: HttpClient) {
-    this.getInfoAllen(this.url + "/a/<id>");
+  url: string = "https://3245-mattiaottav-mondoallena-ho4vex24ii6.ws-eu82.gitpod.io";
+  // url1: string = "https://3245-mattiaottav-mondoallena-c21a4ey5vwm.ws-eu82.gitpod.io/all";
+
+  constructor(public http: HttpClient, private router: Router, private managerService: ManagerService) { }
+
+ 
+  onKey(value:string) {
+   // this.getAllen(this.url + "?allenatore.nome=" + value);
   }
-  
-  getInfoAllen(url: string): void {
-    this.loading = true;
-    this.http.get(url).subscribe(data => {
-      this.allenatore = data;
-      this.loading = false;
-    });
+
+  navigate(id : string) {
+    this.managerService.setAllenatore(id);
+    this.router.navigate([`a/${id}`]);
   }
 }

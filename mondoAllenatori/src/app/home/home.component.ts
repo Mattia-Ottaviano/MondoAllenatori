@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import {Router} from '@angular/router';
+import { AllenatoreComponent } from '../allenatore/allenatore.component';
+ 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,11 +14,10 @@ export class HomeComponent {
   ruoli!: any;
   esercizi!: any;
   loading!: Boolean;
-  url: string = "https://3245-mattiaottav-mondoallena-u4l9g4tbhth.ws-eu82.gitpod.io";
+  url: string = "https://3245-mattiaottav-mondoallena-ho4vex24ii6.ws-eu82.gitpod.io";
   constructor(public http: HttpClient) {
     this.getAllen(this.url + "/pandas/all");
   }
-  
   getAllen(url: string): void {
     this.loading = true;
     this.http.get(url).subscribe(data => {
@@ -54,17 +55,8 @@ getEsercizi(url: string): void {
 
 }
   
-
-  // previousSearch: string = '';
-  // onKey(value: string) {
-  //   if (value != this.previousSearch) {
-  //     this.get(this.url + "?store_name=" + value);
-  //     this.previousSearch = value;
-  //   }
-  // }
-
- // onKey(value: string) {
-//  this.get(this.url + "?store_name=" + value);
-//  }
+// onKey(value: string) {
+// this.get(this.url + "?allenatore=" + value);
+//}
 
 

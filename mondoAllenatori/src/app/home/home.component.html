@@ -50,35 +50,10 @@
     <div class="scrolling-wrapper">
     <div class="container-fluid">
     
-    <!--allenatori-->
-    <p><strong>Allenatori</strong></p>
-    <div class="row row-cols-1 row-cols-md-4 g-6">
-    <div *ngFor="let a of allenatori">
-      <div class="card text-center" style="width:400px">
-        <img class="card-img-top" src="/assets/allenatori/images/{{a.immagine}}" alt="Card image">
-        <div class="card-body">
-          <h4 class="card-title">{{a.nome}} {{a.cognome}}</h4>
-          <p class="card-text">{{a.squadra}}</p>
-          <a href="https://4200-mattiaottav-mondoallena-b5pbizqux7r.ws-eu82.gitpod.io/a/{{a.id}}" class="btn btn-primary">See Profile</a>
-        </div>
-      </div>
-    </div>
-    </div>
-
-
-    <!--schemi-->
-    <p><strong>Schemi</strong></p>
-    <div class="row row-cols-1 row-cols-md-4 g-6">
-    <div *ngFor="let s of schemi">
-      <div class="card text-center" style="width:400px">
-        <img class="card-img-top" src="/assets/schemi/images/{{s.immagine}}" alt="Card image">
-        <div class="card-body">
-          <h4 class="card-title">{{s.nome}}</h4>
-          <a href="https://4200-mattiaottav-mondoallena-b5pbizqux7r.ws-eu82.gitpod.io/s/{{s.id}}" class="btn btn-primary">See Profile</a>
-        </div>
-      </div>
-    </div>
-    </div>
+    <app-allenatore [allenatori] = 'allenatori'></app-allenatore>
+    <app-schema [schemi] = 'schemi'></app-schema>
+    
+    
 
     <!--ruoli-->
     <p><strong>Ruoli</strong></p>

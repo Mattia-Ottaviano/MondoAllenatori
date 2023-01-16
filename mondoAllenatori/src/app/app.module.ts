@@ -7,6 +7,10 @@ import { HomeComponent } from './home/home.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AllenatoreComponent } from './allenatore/allenatore.component';
+import { SchemaComponent } from './schema/schema.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InfoAllenatoreComponent } from './info-allenatore/info-allenatore.component';
 
 
 @NgModule({
@@ -15,11 +19,14 @@ import { RegisterComponent } from './register/register.component';
     HomeComponent,
     HomepageComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AllenatoreComponent,
+    SchemaComponent,
+    InfoAllenatoreComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, HttpClientModule
+    AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
