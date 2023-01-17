@@ -13,7 +13,10 @@ conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio',
 app = Flask(__name__)
 CORS(app)
 
-angular_url = 'https://4200-mattiaottav-mondoallena-ho4vex24ii6.ws-eu82.gitpod.io'
+angular_url = 'https://4200-mattiaottav-mondoallena-v94sm9ywzcv.ws-eu82.gitpod.io'
+
+
+## Home Data 
 
 @app.route('/pandas/all')
 def getall_pandas():
@@ -72,7 +75,7 @@ def getInfoAll_pandas(id):
     res4 = list(df.to_dict("index").values())
     return jsonify(res4)
 
-
+## Register 
 
 @app.route("/register/data", methods=["POST"])
 def dati_registrazione():
@@ -138,6 +141,96 @@ def get_allenatore():
     return jsonify({"data": {}}) 
   else:
     return jsonify({"data": data}) 
+
+
+@app.route("/getschema", methods=["GET"])
+def get_schema():
+  schema_id = request.args.get('id')
+
+  print(request.args)
+  
+  q = "SELECT * FROM schema WHERE id = %(id)s"
+  cursor = conn.cursor(as_dict=True)
+  p = {"id": schema_id}
+
+  cursor.execute(q, p)
+  data = cursor.fetchall()
+  
+  print(data)
+  if len(data) < 1:
+    return jsonify({"data": {}}) 
+  else:
+    return jsonify({"data": data})
+  
+
+  
+@app.route("/getruolo", methods=["GET"])
+def get_ruolo():
+  ruolo_id = request.args.get('id')
+
+  print(request.args)
+  
+  q = "SELECT * FROM ruolo WHERE id = %(id)s"
+  cursor = conn.cursor(as_dict=True)
+  p = {"id": ruolo_id}
+
+  cursor.execute(q, p)
+  data = cursor.fetchall()
+  
+  print(data)
+  if len(data) < 1:
+    return jsonify({"data": {}}) 
+  else:
+    return jsonify({"data": data})
+
+
+
+@app.route("/getesercizio", methods=["GET"])
+def get_esercizio():
+  esercizio_id = request.args.get('id')
+
+  print(request.args)
+  
+  q = "SELECT * FROM esercizio WHERE id = %(id)s"
+  cursor = conn.cursor(as_dict=True)
+  p = {"id": esercizio_id}
+
+  cursor.execute(q, p)
+  data = cursor.fetchall()
+  
+  print(data)
+  if len(data) < 1:
+    return jsonify({"data": {}}) 
+  else:
+    return jsonify({"data": data})
+
+
+
+  ## BACKEND
+
+@app.route('/backend/data', methods=['GET'])
+def backend():
+  nome = request.args.get("nome")
+  cognome = request.args.get("cognome")
+  squadra = request.args.get("squadra")
+
+  Cq = "SELECT * FROM allenatore WHERE nome = %(nome)s AND cognome = %(cognome)s AND squadra = %(squadra)s"
+  Ccursor = conn.cursor(as_dict=True)
+  Cp = {"nome": f"{nome}","c": f"{cognome}", "squadra": f"{squadra}"}
+  Ccursor.execute(Cq, Cp)
+  Cdata = Ccursor.fetchall()
+
+  print(Cdata)
+
+  if len(Cdata) < 1: # Se l'utente non esiste
+    print(request.args)
+    q = 'INSERT INTO users (username, email, password) VALUES (%(username)s, %(email)s, %(password)s)'
+    cursor = conn.cursor(as_dict=True)
+    p = {"nome": f"{nome}","cognome": f"{cognome}","squadra": f"{squadra}"}
+
+    cursor.execute(q, p)
+    conn.commit()
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
