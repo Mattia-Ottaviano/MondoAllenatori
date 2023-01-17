@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { ManagerService } from 'src/services/manager.service';
 
 @Component({
-  selector: 'app-allenatore',
-  templateUrl: './allenatore.component.html',
-  styleUrls: ['./allenatore.component.css']
+  selector: 'app-ruolo',
+  templateUrl: './ruolo.component.html',
+  styleUrls: ['./ruolo.component.css']
 })
-export class AllenatoreComponent {
-  @Input() allenatori!: any;
-  allenatore!: any;
+export class RuoloComponent {
+  @Input() ruoli!: any;
+  ruolo!: any;
   loading!: Boolean;
   url: string = "https://3245-mattiaottav-mondoallena-v94sm9ywzcv.ws-eu82.gitpod.io";
   // url1: string = "https://3245-mattiaottav-mondoallena-c21a4ey5vwm.ws-eu82.gitpod.io/all";
@@ -23,7 +23,8 @@ export class AllenatoreComponent {
   }
 
   navigate(id : string) {
-    this.managerService.setAllenatore(id);
-    this.router.navigate([`a/${id}`]);
+    this.managerService.setRuolo(id);
+    this.router.navigate([`r/${id}`]);
   }
 }
+

@@ -10,6 +10,12 @@ export class ManagerService {
     schemaId!: string;
     schemaEmitter: EventEmitter<string> = new EventEmitter();
 
+    ruoloId!: string;
+    ruoloEmitter: EventEmitter<string> = new EventEmitter();
+
+    esercizioId!: string;
+    esercizioEmitter: EventEmitter<string> = new EventEmitter();
+
 
     constructor() { }
 
@@ -28,5 +34,23 @@ export class ManagerService {
     }
     getSchemaId(): EventEmitter<string> {
         return this.schemaEmitter;
+    }
+
+
+    setRuolo(id: string): void {
+        this.ruoloId = id;
+        this.ruoloEmitter.emit(id);
+    }
+    getRuoloId(): EventEmitter<string> {
+        return this.ruoloEmitter;
+    }
+
+
+    setEsercizio(id: string): void {
+        this.esercizioId = id;
+        this.esercizioEmitter.emit(id);
+    }
+    getEsercizioId(): EventEmitter<string> {
+        return this.esercizioEmitter;
     }
 }

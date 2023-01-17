@@ -52,36 +52,11 @@
     
     <app-allenatore [allenatori] = 'allenatori'></app-allenatore>
     <app-schema [schemi] = 'schemi'></app-schema>
+    <app-ruolo [ruoli] = 'ruoli'></app-ruolo>
+    <app-esercizio [esercizi] = 'esercizi'></app-esercizio>
     
     
 
-    <!--ruoli-->
-    <p><strong>Ruoli</strong></p>
-    <div class="row row-cols-1 row-cols-md-4 g-6">
-    <div *ngFor="let r of ruoli">
-      <div class="card text-center" style="width:400px">
-        <img class="card-img-top" src="/assets/ruolo/images/{{r.immagine}}" alt="Card image">
-        <div class="card-body">
-          <h4 class="card-title">{{r.nome}}</h4>
-          <p class="card-text">{{r.zona}}</p>
-          <a href="https://4200-mattiaottav-mondoallena-b5pbizqux7r.ws-eu82.gitpod.io/r/{{r.id}}" class="btn btn-primary">See Profile</a>
-        </div>
-      </div>
-      
-    </div>
-    </div>
+    
 
-    <!--esercizi-->
-    <p><strong>Esercizi</strong></p>
-    <div class="row row-cols-1 row-cols-md-4 g-6">
-    <div *ngFor="let e of esercizi">
-      <div class="card text-center" style="width:400px">
-        <img class="card-img-top" src="/assets/esercizi/images/{{e.immagine}}" alt="Card image">
-        <div class="card-body">
-          <h4 class="card-title">{{e.nome}}</h4>
-          <p class="card-text">{{e.difficolta}}</p>
-          <a href="https://4200-mattiaottav-mondoallena-b5pbizqux7r.ws-eu82.gitpod.io/e/{{e.id}}" class="btn btn-primary">See Profile</a>
-        </div>
-      </div>
-    </div>
-    </div>
+   

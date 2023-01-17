@@ -11,6 +11,12 @@ import { AllenatoreComponent } from './allenatore/allenatore.component';
 import { SchemaComponent } from './schema/schema.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfoAllenatoreComponent } from './info-allenatore/info-allenatore.component';
+import { InfoSchemaComponent } from './info-schema/info-schema.component';
+import { BackendComponent } from './backend/backend.component';
+import { RuoloComponent } from './ruolo/ruolo.component';
+import { InfoRuoloComponent } from './info-ruolo/info-ruolo.component';
+import { EsercizioComponent } from './esercizio/esercizio.component';
+import { InfoEsercizioComponent } from './info-esercizio/info-esercizio.component';
 
 
 @NgModule({
@@ -22,7 +28,13 @@ import { InfoAllenatoreComponent } from './info-allenatore/info-allenatore.compo
     RegisterComponent,
     AllenatoreComponent,
     SchemaComponent,
-    InfoAllenatoreComponent
+    InfoAllenatoreComponent,
+    InfoSchemaComponent,
+    BackendComponent,
+    RuoloComponent,
+    InfoRuoloComponent,
+    EsercizioComponent,
+    InfoEsercizioComponent
   ],
   imports: [
     BrowserModule,

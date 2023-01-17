@@ -10,7 +10,7 @@ import { Data } from 'src/models/redirectData.model';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  url: string = "https://3245-mattiaottav-mondoallena-ho4vex24ii6.ws-eu82.gitpod.io/register/data";
+  url: string = "https://3245-mattiaottav-mondoallena-v94sm9ywzcv.ws-eu82.gitpod.io/register/data";
   form!: FormGroup;
   errorMessage!: string;
 

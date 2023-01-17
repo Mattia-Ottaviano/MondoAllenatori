@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { ManagerService } from 'src/services/manager.service';
 
 @Component({
   selector: 'app-schema',
@@ -10,15 +12,16 @@ export class SchemaComponent {
   @Input() schemi!: any;
   loading!: any;
   data!: any;
-  url: string = "https://3245-mattiaottav-mondoallena-ho4vex24ii6.ws-eu82.gitpod.io/pandas/sch";
-  constructor(public http: HttpClient) {
+  url: string = "https://3245-mattiaottav-mondoallena-v94sm9ywzcv.ws-eu82.gitpod.io";
+  constructor(public http: HttpClient, private router: Router, private managerService: ManagerService) {
     
   }
-  getSchemi(url: string): void {
-    this.loading = true;
-    this.http.get(url).subscribe(data => {
-      this.schemi = data;
-      this.loading = false;
-    });
- }
+  onKey(value:string) {
+    // this.getAllen(this.url + "?allenatore.nome=" + value);
+   }
+ 
+   navigate(id : string) {
+     this.managerService.setSchema(id);
+     this.router.navigate([`s/${id}`]);
+   }
 }

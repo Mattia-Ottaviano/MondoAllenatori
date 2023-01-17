@@ -7,16 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    <p><strong>Schemi</strong></p>
+    <p><strong>Ruoli</strong></p>
     <div class="row row-cols-1 row-cols-md-4 g-6">
-    <div *ngFor="let s of schemi">
+    <div *ngFor="let r of ruoli">
       <div class="card text-center" style="width:400px">
-        <img class="card-img-top" src="/assets/schemi/images/{{s.immagine}}" alt="Card image">
+        <img class="card-img-top" src="/assets/ruolo/images/{{r.immagine}}" alt="Card image">
         <div class="card-body">
-          <h4 class="card-title">{{s.nome}}</h4>
-          <a (click)="navigate(s.id)"><input class="btn-outline-success" type="button" value="input"></a>
+          <h4 class="card-title">{{r.nome}}</h4>
+          <p class="card-text">{{r.zona}}</p>
+          <a (click)="navigate(r.id)"><input class="btn-outline-success" type="button" value="input"></a>
         </div>
       </div>
+      
     </div>
     </div>
 </body>
