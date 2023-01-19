@@ -13,7 +13,7 @@ conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio',
 app = Flask(__name__)
 CORS(app)
 
-angular_url = 'https://4200-mattiaottav-mondoallena-v94sm9ywzcv.ws-eu82.gitpod.io'
+angular_url = 'https://4200-mattiaottav-mondoallena-mwjsluqec1q.ws-eu83.gitpod.io'
 
 
 ## Home Data 
@@ -121,6 +121,7 @@ def dati_login():
   if data == []:
     return jsonify({"data": "Errore"}) # redirect(angular_url + '/login')
   else:
+    return redirect(angular_url + '/home')
     return jsonify(data) 
 
 @app.route("/getallenatore", methods=["GET"])
@@ -208,28 +209,17 @@ def get_esercizio():
 
   ## BACKEND
 
-@app.route('/backend/data', methods=['GET'])
+@app.route('/backend', methods=['POST'])
 def backend():
-  nome = request.args.get("nome")
-  cognome = request.args.get("cognome")
-  squadra = request.args.get("squadra")
+        if request.method == 'POST':
+            nome = request.args.get('nome')
+            cognome = request.args.get('cognome')
+            squadra = request.args.get('squadra')
 
-  Cq = "SELECT * FROM allenatore WHERE nome = %(nome)s AND cognome = %(cognome)s AND squadra = %(squadra)s"
-  Ccursor = conn.cursor(as_dict=True)
-  Cp = {"nome": f"{nome}","c": f"{cognome}", "squadra": f"{squadra}"}
-  Ccursor.execute(Cq, Cp)
-  Cdata = Ccursor.fetchall()
-
-  print(Cdata)
-
-  if len(Cdata) < 1: # Se l'utente non esiste
-    print(request.args)
-    q = 'INSERT INTO users (username, email, password) VALUES (%(username)s, %(email)s, %(password)s)'
-    cursor = conn.cursor(as_dict=True)
-    p = {"nome": f"{nome}","cognome": f"{cognome}","squadra": f"{squadra}"}
-
-    cursor.execute(q, p)
-    conn.commit()
+            #query
+            qaggall = f'insert into allenatore({nome},{cognome},{squadra})'
+            df4 = pd.read_sql(qaggall,conn)
+            return jsonify(request.args)
 
 
 if __name__ == '__main__':
