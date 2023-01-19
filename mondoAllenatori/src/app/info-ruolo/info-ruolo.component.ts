@@ -17,7 +17,7 @@ export class InfoRuoloComponent implements OnInit {
     this.managerService.getRuoloId().subscribe(data => {
       console.log(data);
       // Qui      I
-      this.http.get('https://3245-mattiaottav-mondoallena-mwjsluqec1q.ws-eu83.gitpod.io/getruolo', { params: { 'id': data } }).subscribe(dataRequest => {
+      this.http.get('https://3245-mattiaottav-mondoallena-6b0kefahudt.ws-eu83.gitpod.io/getruolo', { params: { 'id': data } }).subscribe(dataRequest => {
         console.group(dataRequest)
       });
     })

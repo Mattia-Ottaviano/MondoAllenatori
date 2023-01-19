@@ -1,1 +1,14 @@
-<p>info-allenatore works!</p>
+
+<section>
+    <!--allenatori-->
+    <p><strong>Allenatori</strong></p>
+
+<div *ngFor="let a of allenatore">
+<h4>{{a.nome}} {{a.cognome}}</h4>
+<br>
+<img class="card-img-top" src="/assets/allenatori/images/{{a.immagine}}">
+<br>
+<p>{{a.squadra}}</p>
+       
+</div>
+  </section>

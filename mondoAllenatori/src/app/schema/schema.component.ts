@@ -12,7 +12,7 @@ export class SchemaComponent {
   @Input() schemi!: any;
   loading!: any;
   data!: any;
-  url: string = "https://3245-mattiaottav-mondoallena-mwjsluqec1q.ws-eu83.gitpod.io";
+  url: string = "https://3245-mattiaottav-mondoallena-6b0kefahudt.ws-eu83.gitpod.io";
   constructor(public http: HttpClient, private router: Router, private managerService: ManagerService) {
     
   }

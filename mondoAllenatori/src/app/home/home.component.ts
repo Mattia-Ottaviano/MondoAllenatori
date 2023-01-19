@@ -14,7 +14,7 @@ export class HomeComponent {
   ruoli!: any;
   esercizi!: any;
   loading!: Boolean;
-  url: string = "https://3245-mattiaottav-mondoallena-mwjsluqec1q.ws-eu83.gitpod.io";
+  url: string = "https://3245-mattiaottav-mondoallena-6b0kefahudt.ws-eu83.gitpod.io";
   constructor(public http: HttpClient) {
     this.getAllen(this.url + "/pandas/all");
   }

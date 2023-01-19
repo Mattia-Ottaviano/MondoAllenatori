@@ -17,7 +17,7 @@ export class InfoSchemaComponent implements OnInit {
     this.managerService.getSchemaId().subscribe(data => {
       console.log(data);
       // Qui      I
-      this.http.get('https://3245-mattiaottav-mondoallena-mwjsluqec1q.ws-eu83.gitpod.io/getschema', { params: { 'id': data } }).subscribe(dataRequest => {
+      this.http.get('https://3245-mattiaottav-mondoallena-6b0kefahudt.ws-eu83.gitpod.io/getschema', { params: { 'id': data } }).subscribe(dataRequest => {
         console.group(dataRequest)
       });
     })
