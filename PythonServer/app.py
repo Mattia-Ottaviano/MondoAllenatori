@@ -13,7 +13,7 @@ conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio',
 app = Flask(__name__)
 CORS(app)
 
-angular_url = 'https://4200-mattiaottav-mondoallena-mwjsluqec1q.ws-eu83.gitpod.io'
+angular_url = 'https://4200-mattiaottav-mondoallena-6b0kefahudt.ws-eu83.gitpod.io'
 
 
 ## Home Data 
@@ -121,8 +121,7 @@ def dati_login():
   if data == []:
     return jsonify({"data": "Errore"}) # redirect(angular_url + '/login')
   else:
-    return redirect(angular_url + '/home')
-    return jsonify(data) 
+    return jsonify(data)
 
 @app.route("/getallenatore", methods=["GET"])
 def get_allenatore():
