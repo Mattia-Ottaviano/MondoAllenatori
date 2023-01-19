@@ -6,6 +6,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AllenatoreComponent } from './allenatore/allenatore.component';
 import { InfoAllenatoreComponent } from './info-allenatore/info-allenatore.component';
+import { InfoSchemaComponent } from './info-schema/info-schema.component';
+import { InfoRuoloComponent } from './info-ruolo/info-ruolo.component';
+import { InfoEsercizioComponent } from './info-esercizio/info-esercizio.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -13,6 +16,9 @@ const routes: Routes = [
   { path: 'login', component:  LoginComponent },
   { path: 'home', component:  HomeComponent },
   { path: 'a/:id', component:  InfoAllenatoreComponent },
+  { path: 's/:id', component:  InfoSchemaComponent },
+  { path: 'r/:id', component:  InfoRuoloComponent },
+  { path: 'e/:id', component:  InfoEsercizioComponent },
 ]
 
 @NgModule({

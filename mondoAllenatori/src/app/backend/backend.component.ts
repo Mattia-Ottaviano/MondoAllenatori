@@ -1,42 +1,52 @@
+import { Component,OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Data } from 'src/models/redirectData.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-backend',
   templateUrl: './backend.component.html',
   styleUrls: ['./backend.component.css']
 })
-export class BackendComponent implements OnInit{
+export class BackendComponent {
+  
+  addAllForm!: FormGroup;
+  
+  
+  constructor(private http: HttpClient, private fb: FormBuilder) { }
 
-  url: string = "https://3245-mattiaottav-mondoallena-ho4vex24ii6.ws-eu82.gitpod.io/all";
-  form!: FormGroup;
+  ngOnInit(): void {
 
-    constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) { }
+    
 
-ngOnInit(): void {
-  this.form = this.fb.group({
-    nome: [""],
-    cognome: [""],
-    squadra: [""],
-  });
-}
-  submit() {
+    
+    this.addAllForm = this.fb.group({
+      nome: ["", [Validators.required]],
+      cognome: ["", [Validators.required]],
+      squadra: ["", [Validators.required]]
+    });
+  }
+
+  onShopCreate() {
+    // Crea l'oggetto che in seguito va inserito nell'intestazione della richiesta
     let body: HttpParams = new HttpParams();
     body = body.appendAll({
-      nome: this.form.value.nome,
-      cognome: this.form.value.cognome,
-      squadra: this.form.value.squadra
-    });
-  
-  this.http.post<Data>(this.url, '', {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    }),
+      phone: this.addAllForm.value.phone,
+      via: this.addAllForm.value.via,
+      city: this.addAllForm.value.city
+      
+    })
 
-    params: body,
-    responseType: "json"
-  })
-}}
+    // Esegue la richiesta non tipizzata
+    this.http.post("https://3245-mattiaottav-mondoallena-mwjsluqec1q.ws-eu83.gitpod.io/backend", '', {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      params: body,
+      responseType: "json"
+    }).subscribe(data => {
+      console.log(data);
+    })
+  }
+
+}

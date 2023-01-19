@@ -12,7 +12,7 @@ export class RuoloComponent {
   @Input() ruoli!: any;
   ruolo!: any;
   loading!: Boolean;
-  url: string = "https://3245-mattiaottav-mondoallena-v94sm9ywzcv.ws-eu82.gitpod.io";
+  url: string = "https://3245-mattiaottav-mondoallena-mwjsluqec1q.ws-eu83.gitpod.io";
   // url1: string = "https://3245-mattiaottav-mondoallena-c21a4ey5vwm.ws-eu82.gitpod.io/all";
 
   constructor(public http: HttpClient, private router: Router, private managerService: ManagerService) { }
