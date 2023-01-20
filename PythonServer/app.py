@@ -13,7 +13,7 @@ conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio',
 app = Flask(__name__)
 CORS(app)
 
-angular_url = 'https://4200-mattiaottav-mondoallena-6b0kefahudt.ws-eu83.gitpod.io'
+angular_url = 'https://4200-mattiaottav-mondoallena-0xenfks2yy9.ws-eu83.gitpod.io'
 
 
 ## Home Data 
@@ -216,8 +216,27 @@ def backend():
             squadra = request.args.get('squadra')
 
             #query
-            qaggall = f'insert into allenatore({nome},{cognome},{squadra})'
-            df4 = pd.read_sql(qaggall,conn)
+            cursor = conn.cursor(as_dict=True)
+            q = 'INSERT INTO allenatore (nome,cognome,squadra) VALUES (%(nome)s, %(cognome)s, %(squadra)s)'
+            cursor.execute(q, params={'nome': nome, 'cognome': cognome, 'squadra': squadra})
+            conn.commit()
+            return jsonify(request.args)
+
+
+@app.route('/backendSch', methods=['POST'])
+def backendSch():
+        if request.method == 'POST':
+            nome = request.args.get('nome')
+            n_dif = request.args.get('n_dif')
+            n_cen = request.args.get('n_cen')
+            n_att = request.args.get('n_att')
+            descr = request.args.get('descr')
+
+            #query
+            cursor = conn.cursor(as_dict=True)
+            q = 'INSERT INTO schemi (nome,n_dif,n_cen,n_att,descr) VALUES (%(nome)s, %(n_dif)s, %(n_cen)s, %(n_att)s, %(descr)s)'
+            cursor.execute(q, params={'nome': nome, 'n_dif': n_dif, 'n_cen': n_cen, 'n_att': n_att, 'descr': descr})
+            conn.commit()
             return jsonify(request.args)
 
 
