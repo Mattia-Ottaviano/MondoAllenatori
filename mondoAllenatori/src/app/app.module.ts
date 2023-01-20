@@ -17,6 +17,9 @@ import { RuoloComponent } from './ruolo/ruolo.component';
 import { InfoRuoloComponent } from './info-ruolo/info-ruolo.component';
 import { EsercizioComponent } from './esercizio/esercizio.component';
 import { InfoEsercizioComponent } from './info-esercizio/info-esercizio.component';
+import { BackendSchComponent } from './backend-sch/backend-sch.component';
+import { BackendRuoComponent } from './backend-ruo/backend-ruo.component';
+import { BackendEseComponent } from './backend-ese/backend-ese.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { InfoEsercizioComponent } from './info-esercizio/info-esercizio.componen
     RuoloComponent,
     InfoRuoloComponent,
     EsercizioComponent,
-    InfoEsercizioComponent
+    InfoEsercizioComponent,
+    BackendSchComponent,
+    BackendRuoComponent,
+    BackendEseComponent
   ],
   imports: [
     BrowserModule,

@@ -13,10 +13,11 @@ export class InfoAllenatoreComponent implements OnInit {
   constructor(private http: HttpClient, private managerService: ManagerService) { }
 
   ngOnInit(): void {
-    // Creare modello allenatore
+  
     this.managerService.getAllenatoreId().subscribe(data => {
+      this.allenatore= data;
       console.log(data); 
-      this.http.get('https://3245-mattiaottav-mondoallena-6b0kefahudt.ws-eu83.gitpod.io/getallenatore', { params: { 'id': data } }).subscribe(dataRequest => {
+      this.http.get('https://3245-mattiaottav-mondoallena-0xenfks2yy9.ws-eu83.gitpod.io/getallenatore', { params: { 'id': data } }).subscribe(dataRequest => {
         console.group(dataRequest)
       });
     })

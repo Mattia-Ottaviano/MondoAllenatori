@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent {
   email: string = '';
   passw: string = '';
-  url: string = "https://3245-mattiaottav-mondoallena-6b0kefahudt.ws-eu83.gitpod.io/login/data"
+  url: string = "https://3245-mattiaottav-mondoallena-0xenfks2yy9.ws-eu83.gitpod.io/login/data"
   form!: FormGroup;
   data!: any;
   constructor(public http: HttpClient, private fb: FormBuilder) {

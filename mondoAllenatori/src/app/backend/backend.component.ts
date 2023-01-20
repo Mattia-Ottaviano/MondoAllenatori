@@ -17,28 +17,25 @@ export class BackendComponent {
 
   ngOnInit(): void {
 
-    
-
-    
     this.addAllForm = this.fb.group({
       nome: ["", [Validators.required]],
       cognome: ["", [Validators.required]],
-      squadra: ["", [Validators.required]]
+      squadra: ["", [Validators.required]],
     });
   }
 
-  onShopCreate() {
-    // Crea l'oggetto che in seguito va inserito nell'intestazione della richiesta
+  onAllCreate() {
+
     let body: HttpParams = new HttpParams();
     body = body.appendAll({
-      phone: this.addAllForm.value.phone,
-      via: this.addAllForm.value.via,
-      city: this.addAllForm.value.city
+      nome: this.addAllForm.value.nome,
+      cognome: this.addAllForm.value.cognome,
+      squadra: this.addAllForm.value.squadra
       
     })
 
     // Esegue la richiesta non tipizzata
-    this.http.post("https://3245-mattiaottav-mondoallena-6b0kefahudt.ws-eu83.gitpod.io/backend", '', {
+    this.http.post("https://3245-mattiaottav-mondoallena-0xenfks2yy9.ws-eu83.gitpod.io/backend", '', {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
@@ -48,5 +45,4 @@ export class BackendComponent {
       console.log(data);
     })
   }
-
 }

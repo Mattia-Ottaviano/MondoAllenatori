@@ -23,30 +23,37 @@
     
     
     
-    <form [formGroup]="addAllForm" (ngSubmit)="onAllCreate()">
+    <form [formGroup]="addSchForm" (ngSubmit)="onSchCreate()">
         <div class="form-outline mb-4">
             <div class="form-outline mb-4">
-                <input type="text" class="form-control" id="nome"  placeholder="Inserisci nome allenatore" name="nome" formControlName="nome">
+                <input type="text" class="form-control" id="nome"  placeholder="Inserisci nome schema" name="nome" formControlName="nome">
             </div>
         </div>
     <br>
         <div class="form-outline mb-4">
             <div class="form-outline mb-4">
-                <input type="text" class="form-control" id="cognome"  placeholder="Inserisci cognome allenatore" name="cognome" formControlName="cognome">
+                <input type="text" class="form-control" id="n_dif"  placeholder="Inserisci numero difensori" name="n_dif" formControlName="n_dif">
             </div>
         </div>
     <br>
         <div class="form-outline mb-4">
             <div class="form-outline mb-4">
-                <input type="text" class="form-control" id="squadra"  placeholder="Inserisci squadra allenatore" name="squadra" formControlName="squadra">
+                <input type="text" class="form-control" id="n_cen"  placeholder="Inserisci numero centrocampisti" name="n_cen" formControlName="n_cen">
+            </div>
+        </div>
+    <br>
+        <div class="form-outline mb-4">
+            <div class="form-outline mb-4">
+                <input type="text" class="form-control" id="n_att"  placeholder="Inserisci numero attaccanti" name="n_att" formControlName="n_att">
+            </div>
+        </div>
+    <br>
+        <div class="form-outline mb-4">
+            <div class="form-outline mb-4">
+                <input type="text" class="form-control" id="descr"  placeholder="Inserisci la descrizione" name="descr" formControlName="descr">
             </div>
         </div>
     
-        <button type="submit" class="btn btn-primary" [disabled]="!addAllForm.valid">Inserisci l'allenatore nel database</button> 
+        <button type="submit" class="btn btn-primary" [disabled]="!addSchForm.valid">Inserisci lo schema nel database</button> 
     </form>
-
-
-
-
-
 
