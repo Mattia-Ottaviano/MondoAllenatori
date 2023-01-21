@@ -7,7 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <p><strong>Ruoli</strong></p>
+  <p class="text-center fs-3 fw-bolder">Ruoli</p>
+  <div class="d-flex align-items-center">
     <div class="row row-cols-1 row-cols-md-4 g-6">
     <div *ngFor="let r of ruoli">
       <div class="card text-center" style="width:400px">
@@ -15,11 +16,12 @@
         <div class="card-body">
           <h4 class="card-title">{{r.nome}}</h4>
           <p class="card-text">{{r.zona}}</p>
-          <a (click)="navigate(r.id)"><input class="btn-outline-success" type="button" value="input"></a>
+          <a (click)="navigate(r.id)"><input class="btn btn-outline-dark" type="button" value="input"></a>
         </div>
       </div>
       
     </div>
     </div>
+  </div>
 </body>
 </html>

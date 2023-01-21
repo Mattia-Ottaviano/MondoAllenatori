@@ -1,56 +1,57 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ManagerService {
     allenatoreId!: string;
-    allenatoreEmitter: EventEmitter<string> = new EventEmitter();
+    allenatoreEmitter: Subject<string> = new Subject();
 
     schemaId!: string;
-    schemaEmitter: EventEmitter<string> = new EventEmitter();
+    schemaEmitter: Subject<string> = new Subject();
 
     ruoloId!: string;
-    ruoloEmitter: EventEmitter<string> = new EventEmitter();
+    ruoloEmitter: Subject<string> = new Subject();
 
     esercizioId!: string;
-    esercizioEmitter: EventEmitter<string> = new EventEmitter();
+    esercizioEmitter: Subject<string> = new Subject();
 
 
     constructor() { }
 
     setAllenatore(id: string): void {
         this.allenatoreId = id;
-        this.allenatoreEmitter.emit(id);
+        this.allenatoreEmitter.next(id);
     }
-    getAllenatoreId(): EventEmitter<string> {
-        return this.allenatoreEmitter;
+    getAllenatoreId(): Observable<string> {
+        return this.allenatoreEmitter.asObservable();
     }
 
 
     setSchema(id: string): void {
         this.schemaId = id;
-        this.schemaEmitter.emit(id);
+        this.schemaEmitter.next(id);
     }
-    getSchemaId(): EventEmitter<string> {
-        return this.schemaEmitter;
+    getSchemaId(): Observable<string> {
+        return this.schemaEmitter.asObservable();
     }
 
 
     setRuolo(id: string): void {
         this.ruoloId = id;
-        this.ruoloEmitter.emit(id);
+        this.ruoloEmitter.next(id);
     }
-    getRuoloId(): EventEmitter<string> {
-        return this.ruoloEmitter;
+    getRuoloId(): Observable<string> {
+        return this.ruoloEmitter.asObservable();
     }
 
 
     setEsercizio(id: string): void {
         this.esercizioId = id;
-        this.esercizioEmitter.emit(id);
+        this.esercizioEmitter.next(id);
     }
-    getEsercizioId(): EventEmitter<string> {
-        return this.esercizioEmitter;
+    getEsercizioId(): Observable<string> {
+        return this.esercizioEmitter.asObservable();
     }
 }

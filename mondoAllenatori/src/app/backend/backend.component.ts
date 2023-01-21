@@ -35,7 +35,7 @@ export class BackendComponent {
     })
 
     // Esegue la richiesta non tipizzata
-    this.http.post("https://3245-mattiaottav-mondoallena-0xenfks2yy9.ws-eu83.gitpod.io/backend", '', {
+    this.http.post("https://3245-mattiaottav-mondoallena-w6vb3cv5pae.ws-eu83.gitpod.io/backend", '', {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),

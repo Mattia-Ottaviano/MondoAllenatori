@@ -11,7 +11,7 @@ export class EsercizioComponent {
   @Input() esercizi!: any;
   esercizio!: any;
   loading!: Boolean;
-  url: string = "https://3245-mattiaottav-mondoallena-0xenfks2yy9.ws-eu83.gitpod.io";
+  url: string = "https://3245-mattiaottav-mondoallena-w6vb3cv5pae.ws-eu83.gitpod.io";
   // url1: string = "https://3245-mattiaottav-mondoallena-6b0kefahudt.ws-eu83.gitpod.io/all";
 
   constructor(public http: HttpClient, private router: Router, private managerService: ManagerService) { }

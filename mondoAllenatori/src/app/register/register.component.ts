@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Data } from 'src/models/redirectData.model';
+import { StorageService } from 'src/services/storage.service';
 
 @Component({
   selector: 'app-register',
@@ -10,13 +11,20 @@ import { Data } from 'src/models/redirectData.model';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  url: string = "https://3245-mattiaottav-mondoallena-0xenfks2yy9.ws-eu83.gitpod.io/register/data";
+  url: string = "https://3245-mattiaottav-mondoallena-w6vb3cv5pae.ws-eu83.gitpod.io/register/data";
   form!: FormGroup;
   errorMessage!: string;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private http: HttpClient, 
+    private fb: FormBuilder, 
+    private router: Router,
+    private storage: StorageService
+    ) { }
 
   ngOnInit(): void {
+    if(this.storage.getData('id') != null) this.router.navigate(['home']);
+
     this.form = this.fb.group({
       name: ["", [Validators.required]],
       email: ["", [Validators.required, Validators.email]],

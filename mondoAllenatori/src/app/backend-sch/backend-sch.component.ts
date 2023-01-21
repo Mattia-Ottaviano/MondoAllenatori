@@ -30,7 +30,7 @@ export class BackendSchComponent {
   onSchCreate() {
 
     let body: HttpParams = new HttpParams();
-    body = body.appendSch({
+    body = body.appendAll({
       nome: this.addSchForm.value.nome,
       n_dif: this.addSchForm.value.n_dif,
       n_cen: this.addSchForm.value.n_cen,
@@ -40,7 +40,7 @@ export class BackendSchComponent {
     })
 
     // Esegue la richiesta non tipizzata
-    this.http.post("https://3245-mattiaottav-mondoallena-0xenfks2yy9.ws-eu83.gitpod.io/backendSch", '', {
+    this.http.post("https://3245-mattiaottav-mondoallena-w6vb3cv5pae.ws-eu83.gitpod.io/backendSch", '', {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
