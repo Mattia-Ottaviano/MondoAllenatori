@@ -13,7 +13,7 @@ conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio',
 app = Flask(__name__)
 CORS(app)
 
-angular_url = 'https://4200-mattiaottav-mondoallena-0xenfks2yy9.ws-eu83.gitpod.io'
+angular_url = 'https://4200-mattiaottav-mondoallena-w6vb3cv5pae.ws-eu83.gitpod.io'
 
 
 ## Home Data 
@@ -91,7 +91,7 @@ def dati_registrazione():
 
   print(Cdata)
 
-  if len(Cdata) < 1: # Se l'utente non esiste
+  if len(Cdata) < 1:
     print(request.args)
     q = 'INSERT INTO users (username, email, password) VALUES (%(username)s, %(email)s, %(password)s)'
     cursor = conn.cursor(as_dict=True)
@@ -108,20 +108,31 @@ def dati_registrazione():
 
 @app.route("/login/data", methods=["POST"])
 def dati_login():
-  email = request.args["email"]
-  password = request.args["password"]
-  q = "select * from users where email = %(email)s and password = %(password)s "
   cursor = conn.cursor(as_dict=True)
-  p = {"email": f"{email}","password": f"{password}"}
 
+  email = request.args.get("email")
+  password = request.args.get("password")
+
+  data = {
+    'errore': "",
+    'data': {}
+  }
+
+  q = "select * from users where email = %(email)s"
+  p = {"email": f"{email}","password": f"{password}"}
   cursor.execute(q, p)
-  data = cursor.fetchall()
+  res = cursor.fetchall()
+
+  if len(res) > 0:
+    if res[0]['password'] == password:
+      data['data'] = res[0]
+    else:
+      data['errore'] = "Password sbagliata"
+  else:
+     data['errore'] = "L'utente non esiste"
   
   print(data)
-  if data == []:
-    return jsonify({"data": "Errore"}) # redirect(angular_url + '/login')
-  else:
-    return jsonify(data)
+  return jsonify(data)
 
 @app.route("/getallenatore", methods=["GET"])
 def get_allenatore():
@@ -140,7 +151,7 @@ def get_allenatore():
   if len(data) < 1:
     return jsonify({"data": {}}) 
   else:
-    return jsonify({"data": data}) 
+    return jsonify({"data": data[0]}) 
 
 
 @app.route("/getschema", methods=["GET"])
@@ -240,5 +251,34 @@ def backendSch():
             return jsonify(request.args)
 
 
+@app.route('/backendEse', methods=['POST'])
+def backendEse():
+        if request.method == 'POST':
+            nome = request.args.get('nome')
+            n_gioc = request.args.get('n_gioc')
+            difficolta = request.args.get('difficolta')
+            scopo = request.args.get('scopo')
+
+            #query
+            cursor = conn.cursor(as_dict=True)
+            q = 'INSERT INTO esercizio (nome,n_gioc,difficolta,scopo) VALUES (%(nome)s, %(n_gioc)s, %(difficolta)s, %(scopo)s)'
+            cursor.execute(q, params={'nome': nome, 'n_gioc': n_gioc, 'difficolta': difficolta, 'scopo': scopo})
+            conn.commit()
+            return jsonify(request.args)
+
+@app.route('/backendRuo', methods=['POST'])
+def backendRuo():
+        if request.method == 'POST':
+            nome = request.args.get('nome')
+            caratteristiche = request.args.get('caratteristiche')
+            esempi = request.args.get('esempi')
+            zona = request.args.get('zona')
+
+            #query
+            cursor = conn.cursor(as_dict=True)
+            q = 'INSERT INTO ruolo (nome,caratteristiche,esempi,zona) VALUES (%(nome)s, %(caratteristiche)s, %(esempi)s, %(zona)s)'
+            cursor.execute(q, params={'nome': nome, 'caratteristiche': caratteristiche, 'esempi': esempi, 'zona': zona})
+            conn.commit()
+            return jsonify(request.args)
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
