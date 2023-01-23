@@ -11,7 +11,7 @@ import { StorageService } from 'src/services/storage.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  url: string = "https://3245-mattiaottav-mondoallena-w6vb3cv5pae.ws-eu83.gitpod.io/register/data";
+  url: string = "https://3245-mattiaottav-mondoallena-d0hbm3m30in.ws-eu83.gitpod.io/register/data";
   form!: FormGroup;
   errorMessage!: string;
 

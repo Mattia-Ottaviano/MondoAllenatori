@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, NgZone, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Allenatore } from 'src/models/allenatore.model';
 import { Data } from 'src/models/richiestaAllenatore.model';
 import { ManagerService } from 'src/services/manager.service';
@@ -11,32 +11,22 @@ import { ManagerService } from 'src/services/manager.service';
   styleUrls: ['./info-allenatore.component.css']
 })
 export class InfoAllenatoreComponent implements OnInit {
-  allenatore: Allenatore = new Allenatore();
+  allenatore!: Allenatore;
   haveLoadedAll: boolean = true;
 
-  constructor(private http: HttpClient, private managerService: ManagerService, private router: Router, private ngZone: NgZone) { }
+  constructor(private http: HttpClient, private managerService: ManagerService, private router: Router, private ngZone: NgZone, private cd: ChangeDetectorRef, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
-    // if(this.haveLoadedAll) {
-    //   this.haveLoadedAll = false;
-    //   this.router.navigate(['e/0']);
-    // }
 
+    const data = Number(this.route.snapshot.paramMap.get('id'))
 
-    this.managerService.getAllenatoreId().subscribe(data => {
-      if (data == null || data == undefined) return;
-
-      this.http.get<Data>('https://3245-mattiaottav-mondoallena-w6vb3cv5pae.ws-eu83.gitpod.io/getallenatore', { params: { 'id': data } }).subscribe(a => {
-        this.allenatore = a.data;
-        console.table(a.data)
-      });
-    })
-
-
-    // setTimeout(() => {
-    //   this.allenatore = new Allenatore(0, 'Ugo', 'Bruco', 'Napoli', '0')
-    // }, 3000);
+    console.log(data);
+    this.http.get<Data>('https://3245-mattiaottav-mondoallena-d0hbm3m30in.ws-eu83.gitpod.io/getallenatore', { params: { 'id': data } }).subscribe(a => {
+      this.allenatore = a.data;
+      console.table(a.data)
+      this.cd.detectChanges();
+    });
   }
 
 }

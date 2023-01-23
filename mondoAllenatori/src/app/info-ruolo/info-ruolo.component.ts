@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Ruolo } from 'src/models/ruolo.model';
+import { Data } from 'src/models/richiestaRuolo.model';
 import { ManagerService } from 'src/services/manager.service';
 
 @Component({
@@ -9,26 +11,21 @@ import { ManagerService } from 'src/services/manager.service';
   styleUrls: ['./info-ruolo.component.css']
 })
 export class InfoRuoloComponent implements OnInit {
-  ruolo!: any;
-  haveLoadedAll: boolean = true;
+  ruolo!: Ruolo;
+  haveLoadedRuo: boolean = true;
 
-  constructor(private http: HttpClient, private managerService: ManagerService, private router: Router) { }
+  constructor(private http: HttpClient, private managerService: ManagerService, private router: Router, private ngZone: NgZone, private cd: ChangeDetectorRef, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    /**
-    if (this.haveLoadedAll) {
-      this.haveLoadedAll = false;
-      this.router.navigate(['s/0']);
-    }
-    */
-   
-    // Creare modello allenatore
-    this.managerService.getRuoloId().subscribe(data => {
-      console.log(data);
-      // Qui      I
-      this.http.get('https://3245-mattiaottav-mondoallena-w6vb3cv5pae.ws-eu83.gitpod.io/getruolo', { params: { 'id': data } }).subscribe(dataRequest => {
-        console.group(dataRequest)
-      });
-    })
+
+
+    const data = Number(this.route.snapshot.paramMap.get('id'))
+
+    console.log(data);
+    this.http.get<Data>('https://3245-mattiaottav-mondoallena-d0hbm3m30in.ws-eu83.gitpod.io/getruolo', { params: { 'id': data } }).subscribe(r => {
+      this.ruolo = r.data;
+      console.table (r.data)
+      this.cd.detectChanges();
+    });
   }
 }

@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   esercizi!: any;
   loading!: Boolean;
 
-  url: string = "https://3245-mattiaottav-mondoallena-w6vb3cv5pae.ws-eu83.gitpod.io";
+  url: string = "https://3245-mattiaottav-mondoallena-d0hbm3m30in.ws-eu83.gitpod.io";
   constructor(
     private http: HttpClient,
     private router: Router,

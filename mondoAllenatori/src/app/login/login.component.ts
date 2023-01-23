@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   email: string = '';
   passw: string = '';
-  url: string = "https://3245-mattiaottav-mondoallena-w6vb3cv5pae.ws-eu83.gitpod.io/login/data"
+  url: string = "https://3245-mattiaottav-mondoallena-d0hbm3m30in.ws-eu83.gitpod.io/login/data"
   form!: FormGroup;
   data!: any;
   constructor(

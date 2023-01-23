@@ -37,7 +37,7 @@ export class BackendRuoComponent {
     })
 
     // Esegue la richiesta non tipizzata
-    this.http.post("https://3245-mattiaottav-mondoallena-w6vb3cv5pae.ws-eu83.gitpod.io/backendRuo", '', {
+    this.http.post("https://3245-mattiaottav-mondoallena-d0hbm3m30in.ws-eu83.gitpod.io/backendRuo", '', {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
