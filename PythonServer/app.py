@@ -13,7 +13,7 @@ conn = sql.connect(server='213.140.22.237\SQLEXPRESS', user= 'giurato.fabrizio',
 app = Flask(__name__)
 CORS(app)
 
-angular_url = 'https://4200-mattiaottav-mondoallena-w6vb3cv5pae.ws-eu83.gitpod.io'
+angular_url = 'https://4200-mattiaottav-mondoallena-d0hbm3m30in.ws-eu83.gitpod.io'
 
 
 ## Home Data 
@@ -160,7 +160,7 @@ def get_schema():
 
   print(request.args)
   
-  q = "SELECT * FROM schema WHERE id = %(id)s"
+  q = "SELECT * FROM schemi WHERE id = %(id)s"
   cursor = conn.cursor(as_dict=True)
   p = {"id": schema_id}
 
@@ -171,8 +171,8 @@ def get_schema():
   if len(data) < 1:
     return jsonify({"data": {}}) 
   else:
-    return jsonify({"data": data})
-  
+    return jsonify({"data": data[0]}) 
+
 
   
 @app.route("/getruolo", methods=["GET"])
@@ -192,7 +192,8 @@ def get_ruolo():
   if len(data) < 1:
     return jsonify({"data": {}}) 
   else:
-    return jsonify({"data": data})
+    return jsonify({"data": data[0]}) 
+
 
 
 
@@ -213,7 +214,7 @@ def get_esercizio():
   if len(data) < 1:
     return jsonify({"data": {}}) 
   else:
-    return jsonify({"data": data})
+    return jsonify({"data": data[0]}) 
 
 
 
